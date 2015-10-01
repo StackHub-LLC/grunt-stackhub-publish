@@ -1,0 +1,46 @@
+{
+  "name": "grunt-stackhub-publish",
+  "description": "Grunt plugin to publish your package versions to StackHub",
+  "version": "0.1.0",
+  "homepage": "https://bitbucket.org/stack-hub/grunt-stackhub-publish",
+  "author": {
+    "name": "Matthew Lohbihler",
+    "email": "matthew@stackhub.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/stack-hub/grunt-stackhub-publish.git"
+  },
+  "bugs": {
+    "url": "https://bitbucket.org/stack-hub/grunt-stackhub-publish/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://bitbucket.org/stack-hub/grunt-stackhub-publish/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {
+    "inquirer": "0.10.1",
+    "btoa": "1.1.2",
+    "restler": "3.4.0"
+  }
+}
