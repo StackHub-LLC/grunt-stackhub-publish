@@ -123,3 +123,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 - 0.1.0 - 2015-10-01: Initial contribution
+- 0.1.1 - 2015-10-01: Fix to this readme file
