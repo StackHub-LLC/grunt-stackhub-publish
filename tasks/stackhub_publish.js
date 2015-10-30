@@ -92,10 +92,18 @@ module.exports = function(grunt) {
                     };
 
                     var gridRow = {
-                        // Add pod overrides here as necessary.
-                        // Made need to convert a readme to markdown or something.
+                        name: options.name,
+                        packageRef: options.packageRef,
+                        version: options.version,
+                        ts: options.ts,
+                        fanPod: options.fanPod,
+                        fanDepends: options.fanDepends,
+                        axModule: options.axModule,
+                        axDepends: options.axDepends,
+                        readme: options.readme,
                         releaseStatus: options.releaseStatus
                     };
+
                     var grid = JSON.stringify({rows: [gridRow]});
 
                     var reqData = {
