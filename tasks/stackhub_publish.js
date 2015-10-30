@@ -13,11 +13,11 @@ module.exports = function(grunt) {
     var btoa = require('btoa');
     var fs = require('fs');
     var rest = require('restler');
-    
+
     grunt.registerMultiTask('stackhub-publish', 'Grunt plugin to publish your package versions to StackHub', function() {
         // Tell Grunt this task is asynchronous.
         var done = this.async();
-        
+
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
             shuser: '',
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
             filepath: '',
             onComplete: function(data) {}
         });
-        
+
         // Validate the options
         if (!options.filepath.trim().length)
             grunt.fail.warn('File path (filepath) not defined.');
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             grunt.fail.warn('Package version file "' + options.filepath + '" not found.');
             return false;
         }
-        
+
         //
         // Part 1: Prompt for credentials if necessary
         //
@@ -66,15 +66,15 @@ module.exports = function(grunt) {
                 }
             });
         }
-        
+
         inquirer.prompt(questions, function(answers) {
             for (var p in answers)
                 options[p] = answers[p];
-            
+
             //
             // Part 2: Upload package version
             //
-            
+
             // Get file size (necessary for multipart upload)
             fs.stat(options.filepath, function(err, stats) {
                 if (err) {
@@ -84,25 +84,25 @@ module.exports = function(grunt) {
                 else if (stats.isFile()) {
                     var fileSize = stats.size;
                     grunt.log.writeln('Uploading "' + options.filepath + '"');
-                    
+
                     var url = options.host +"/api/packageVersionCreate";
                     var headers = {
                         Authorization: 'Basic '+ btoa(options.shuser +":"+ options.shpass),
                         Accept: "application/json"
                     };
-                    
+
                     var gridRow = {
                         // Add pod overrides here as necessary.
                         // Made need to convert a readme to markdown or something.
                         releaseStatus: options.releaseStatus
                     };
                     var grid = JSON.stringify({rows: [gridRow]});
-                    
+
                     var reqData = {
                         grid: rest.data('', 'application/json', grid),
                         'package': rest.file(options.filepath, null, fileSize, null, null)
                     };
-                    
+
                     // HTTP request
                     rest.request(url, {
                         rejectUnauthorized: true,
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
                                 grunt.log.ok('Upload successful');
                                 options.onComplete(grid.rows && grid.rows.length ? grid.rows[0] : null);
                             }
-                            
+
                             // callback once upload is done
                             done(data);
                         }
