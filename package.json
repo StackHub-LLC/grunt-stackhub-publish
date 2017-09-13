@@ -1,7 +1,7 @@
 {
   "name": "grunt-stackhub-publish",
   "description": "Grunt plugin to publish your package versions to StackHub",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://bitbucket.org/stack-hub/grunt-stackhub-publish",
   "author": {
     "name": "Matthew Lohbihler",
